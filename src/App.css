@@ -24,6 +24,26 @@
 }
 
 
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+ul li a {
+  display: block;
+  width: 100%;
+  text-decoration: none;
+  padding: 5px;
+  color: #87CEFA;
+}
+
+
+ul li a:hover {
+  text-decoration: underline;
+}
+
+
 
 @keyframes App-logo-spin {
   from {
