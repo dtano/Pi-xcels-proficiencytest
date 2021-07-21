@@ -44,6 +44,7 @@ app.get("/api/movies/:id", (request, response) => {
     
     // Go through array of jsons to look for the movie with the specified id
     allMovies.forEach((movie) => {
+      // Found a match
       if(movie.id == id){
         response.json(movie);
         return;
