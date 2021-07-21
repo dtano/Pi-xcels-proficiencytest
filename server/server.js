@@ -28,24 +28,31 @@ app.get("/api/movies", (request, response) => {
   console.log("❇️ Received GET request to /api/movies");
   
   // Parse the movie json file
-  let rawData = JSON.parse(fs.readFileSync("server/movies_metadata.json"));
+  let allMovies = JSON.parse(fs.readFileSync("server/movies_metadata.json"));
   
   // Return it as a json object in the response body
-  
-  //response.json({ data: [{ id: 1, name: '1' }, { id: 2, name: '2' }] });
-  response.json(rawData);
+  // This assumes that the API should send all information about all movies
+  response.json(allMovies);
 });
 
 // Get single movie by id route
 app.get("/api/movies/:id", (request, response) => {
   try{
+    const { id } = request.params.id;
+    // Parse movie json file
+    let allMovies = JSON.parse(fs.readFileSync("server/movies_metadata.json"));
+    // Go through array of jsons
+    for(var movie in allMovies){
+      if(movie.id === id){
+        response.json(movie);
+        return;
+      }
+    }
     
+    response.json(`Movie with id = ${id} not found`);
   }catch(err){
     response.status(404).send(err.message);
   }
-  // Parse movie json file
-  // Go through array of jsons
-  // Find json with given id
   
 });
 
