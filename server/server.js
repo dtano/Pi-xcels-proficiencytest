@@ -1,6 +1,8 @@
 const express = require("express");
 const path = require("path");
 
+const fs = require("fs");
+
 const app = express();
 
 // PWAs want HTTPS!
@@ -24,7 +26,27 @@ app.get("/api/ping", (request, response) => {
 // A mock route to return some data.
 app.get("/api/movies", (request, response) => {
   console.log("❇️ Received GET request to /api/movies");
-  response.json({ data: [{ id: 1, name: '1' }, { id: 2, name: '2' }] });
+  
+  // Parse the movie json file
+  let rawData = JSON.parse(fs.readFileSync("server/movies_metadata.json"));
+  
+  // Return it as a json object in the response body
+  
+  //response.json({ data: [{ id: 1, name: '1' }, { id: 2, name: '2' }] });
+  response.json(rawData);
+});
+
+// Get single movie by id route
+app.get("/api/movies/:id", (request, response) => {
+  try{
+    
+  }catch(err){
+    response.status(404).send(err.message);
+  }
+  // Parse movie json file
+  // Go through array of jsons
+  // Find json with given id
+  
 });
 
 // Express port-switching logic
