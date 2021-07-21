@@ -7,6 +7,7 @@ function App() {
   useEffect(() => {
     async function getData() {
       const response = await fetch('/api/movies');
+      console.log(response);
       const payload = await response.json();
       setMovies(payload.data);
     }
@@ -19,9 +20,6 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and your changes will live-update automatically.
         </p>
-        <div className="example">
-          Example
-        </div>
         <a
           className="App-link"
           href="https://reactjs.org"
@@ -31,7 +29,11 @@ function App() {
           Learn React
         </a>
         <p>Nice Movies:</p>
-        <p>{JSON.stringify(movies)}</p>
+        <p>
+          {movies.map((movie, ind) => {
+            return (<li key={ind}>{movie.title}, {movie.tagline}</li>)
+          })}
+        </p>
         
       </header>
     </div>

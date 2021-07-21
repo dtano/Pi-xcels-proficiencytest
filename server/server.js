@@ -32,7 +32,7 @@ app.get("/api/movies", (request, response) => {
   
   // Return it as a json object in the response body
   // This assumes that the API should send all information about all movies
-  response.json(allMovies);
+  response.json({data: allMovies});
 });
 
 // Get single movie by id route
