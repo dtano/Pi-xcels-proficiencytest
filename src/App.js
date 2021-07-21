@@ -30,9 +30,11 @@ function App() {
         </a>
         <p>Nice Movies:</p>
         <p>
+          <ul>
           {movies.map((movie, ind) => {
-            return (<li key={ind}>{movie.title}, {movie.tagline}</li>)
+            return (<li key={ind}><a href="">{movie.title}, {movie.tagline}, {movie.vote_average}</a></li>)
           })}
+          </ul>
         </p>
         
       </header>
