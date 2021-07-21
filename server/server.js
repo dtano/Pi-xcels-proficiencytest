@@ -38,20 +38,22 @@ app.get("/api/movies", (request, response) => {
 // Get single movie by id route
 app.get("/api/movies/:id", (request, response) => {
   try{
-    const { id } = request.params.id;
+    const { id } = request.params;
     // Parse movie json file
     let allMovies = JSON.parse(fs.readFileSync("server/movies_metadata.json"));
-    // Go through array of jsons
-    for(var movie in allMovies){
-      if(movie.id === id){
+    
+    // Go through array of jsons to look for the movie with the specified id
+    allMovies.forEach((movie) => {
+      if(movie.id == id){
         response.json(movie);
         return;
       }
-    }
+    });
     
-    response.json(`Movie with id = ${id} not found`);
+    // If failed to find, then send back an error message
+    throw new Error(`Movie with id = ${id} not found`);
   }catch(err){
-    response.status(404).send(err.message);
+    response.status(404).json(err.message);
   }
   
 });
