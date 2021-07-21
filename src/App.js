@@ -32,14 +32,15 @@ function App() {
           Learn React
         </a>
         <p>Nice Movies:</p>
-        <p>
-          <ul>
-          {movies.map((movie, ind) => {
-            return (<li key={ind}><a href="">{movie.title}, {movie.tagline}, {movie.vote_average}</a></li>)
-          })}
-          </ul>
-        </p>
-        
+        <div className = "movieList">
+          <p>
+            <ul>
+            {movies.map((movie, ind) => {
+              return (<li key={ind}><a href="">{movie.title}, {movie.tagline}, {movie.vote_average}</a></li>)
+            })}
+            </ul>
+          </p>
+        </div>
       </header>
     </div>
   );
