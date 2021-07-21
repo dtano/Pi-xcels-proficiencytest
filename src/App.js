@@ -19,6 +19,9 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and your changes will live-update automatically.
         </p>
+        <div className="example">
+          Example
+        </div>
         <a
           className="App-link"
           href="https://reactjs.org"
